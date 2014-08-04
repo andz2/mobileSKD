@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">mobileSKD</string>
+    <string name="app_name">Мобильный КПП</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Настройки</string>
+    <string name="LoginText">Информация о логине</string>
+    <string name="LoginBtn">Вход в систему</string>
+    <string name="title_activity_login_activity1">Вход в систему</string>
+    <string name="ScanText">Сканировать карту</string>
+
 
 </resources>

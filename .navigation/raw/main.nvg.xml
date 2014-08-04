@@ -13,8 +13,44 @@
           y = "0"/>
       </key>
       <value      
-        x = "480"      
+        x = "320"      
         y = "160"      
+        class = "com.android.navigation.Point"/>
+    </entry>
+    <entry>
+      <key      
+        class = "com.android.navigation.ActivityState"      
+        className = "xxmmk.mobileskd.LoginActivity">
+        <location        
+          idref = "point0"/>
+      </key>
+      <value      
+        x = "2240"      
+        y = "480"      
+        class = "com.android.navigation.Point"/>
+    </entry>
+    <entry>
+      <key      
+        class = "com.android.navigation.ActivityState"      
+        className = "com.mycompany.myapp.LoginActivity1">
+        <location        
+          idref = "point0"/>
+      </key>
+      <value      
+        x = "640"      
+        y = "2080"      
+        class = "com.android.navigation.Point"/>
+    </entry>
+    <entry>
+      <key      
+        class = "com.android.navigation.MenuState"      
+        xmlResourceName = "login_activity1">
+        <location        
+          idref = "point0"/>
+      </key>
+      <value      
+        x = "1760"      
+        y = "2880"      
         class = "com.android.navigation.Point"/>
     </entry>
     <entry>
@@ -25,8 +61,8 @@
           idref = "point0"/>
       </key>
       <value      
-        x = "1768"      
-        y = "100"      
+        x = "1760"      
+        y = "160"      
         class = "com.android.navigation.Point"/>
     </entry>
   </locations>
