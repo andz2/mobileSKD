@@ -28,14 +28,29 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
+import com.cengalabs.flatui.FlatUI;
+import com.cengalabs.flatui.views.FlatButton;
+import com.cengalabs.flatui.views.FlatCheckBox;
+import com.cengalabs.flatui.views.FlatEditText;
+import com.cengalabs.flatui.views.FlatRadioButton;
+import com.cengalabs.flatui.views.FlatSeekBar;
+import com.cengalabs.flatui.views.FlatTextView;
+import com.cengalabs.flatui.views.FlatToggleButton;
+import java.util.ArrayList;
+
+
 public class MyActivity extends Activity {
 
     @Override
     protected void onStart(){
+
         super.onStart();
+
 
         TextView loginInfo = (TextView) findViewById(R.id.LognText);
         loginInfo.setText(statusConnect());
+
+
 
     }
 
@@ -44,7 +59,11 @@ public class MyActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+//---------------------------------------------------------
 
+
+
+     //---------------------------------------------------
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_my);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build(); //политика сетевого доступа
