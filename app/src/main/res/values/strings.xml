@@ -8,6 +8,9 @@
     <string name="LoginBtn">Вход в систему</string>
     <string name="title_activity_login_activity1">Вход в систему</string>
     <string name="ScanText">Сканировать карту</string>
+    <string name="CancBtnText">Отмена</string>
+    <string name="SaveBtnText">Сохранить</string>
+    <string name="ScanTxt">Сканировать</string>
 
 
 </resources>

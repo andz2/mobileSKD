@@ -58,7 +58,19 @@ public class MyActivity extends Activity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 view.getContext().startActivity(intent);
             }
-        });
+        }
+        );
+
+        Button scanButton = (Button) findViewById(R.id.ScanBtn);
+        scanButton.setOnClickListener(new View.OnClickListener() {
+                                           @Override
+                                           public void onClick(View view) {
+                                               Intent intent = new Intent(view.getContext(),ScanActivity.class);
+                                               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                               view.getContext().startActivity(intent);
+                                           }
+                                       }
+        );
 
     }
 
