@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="xxmmk.mobileskd.LoginActivity">
+    tools:context="xxmmk.mobileskd.LoginActivity"
+    android:background="@android:color/white">
 
     <!-- Login progress -->
     <ProgressBar
@@ -17,13 +18,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:clickable="false" />
 
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        style="@style/_SKDApp">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -54,12 +56,12 @@
 
             <Button
                 android:id="@+id/LoginBtn"
-                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:theme="@style/_SKDApp" />
 
         </LinearLayout>
     </ScrollView>

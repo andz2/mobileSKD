@@ -65,14 +65,22 @@ public class MobileSKDApp extends Application {
     public String getDataURL(String mCode) {
         return this.mDataBasicURL+"?s="+mCode+"&token="+this.getmHASH();
     }
+    public String getToken() {
+        return this.getmHASH();
+    }
+
     public String putDataURL(String mObject, String mCode) {
         return "http://161.8.223.166:8020/get_to_oracle.aspx?s=6&P_GEN_OBJECT_ID="+mObject+"&P_NFC_CODE="+mCode+"&P_X_COORD=0&P_Y_COORD=2";
     }
 
-    public String getObjectDataURL(String mCode,String mOrgId) {
+    /*public String getObjectDataURL(String mCode,String mOrgId) {
         return this.mDataBasicURL+"?s="+mCode+"&token="+this.getmHASH()+"&org_id="+mOrgId;
     }
-
+*/
+    public String getSKDDataURL(String mCode) {
+        Log.d(this.mDataBasicURL+"?s="+mCode+"&token="+this.getmHASH(),"URL");
+        return this.mDataBasicURL+"?s="+mCode+"&token="+this.getmHASH();
+    }
     public String getLoginDataURL(String login, String password) {
         return this.mLoginURL+"?user="+login+"&password="+password;
     }

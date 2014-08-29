@@ -1,4 +1,32 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="xxmmk.mobileskd.LoginActivity"
+    android:background="@android:color/white">
+    <!-- Login progress -->
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        android:clickable="false" />
+
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/_SKDApp" >
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,13 +34,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
 
     tools:context="xxmmk.mobileskd.ScanActivity"
-    android:id="@+id/ScanText3">
-
-    <TextView
+    android:id="@+id/ScanText3"
+    android:background="@android:color/white">
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Оборудование"
+        android:text="Информация"
         android:id="@+id/ScanText1"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -21,27 +49,19 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="№ Метки"
+        android:text="№ карты"
         android:id="@+id/ScanText3"
-        android:layout_below="@+id/ScanText2"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ScanText1" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/nfc_scan"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/ScanText2"
-        android:layout_below="@+id/ScanText1"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/ScanText4" />
 
     <TextView
         android:layout_width="match_parent"
@@ -52,19 +72,15 @@
         android:layout_below="@+id/ScanText3"
         android:layout_alignParentLeft="true" />
 
-    <Button
+    <WebView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/SaveBtnText"
-        android:id="@+id/Scanbutton1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"/>
+        android:id="@+id/webView1"
+        android:layout_alignRight="@+id/ScanText4"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentBottom="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/CancBtnText"
-        android:id="@+id/Scanbutton2"
-        android:layout_alignTop="@+id/Scanbutton1"
-        android:layout_alignParentRight="true" />
-</RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

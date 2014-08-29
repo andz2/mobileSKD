@@ -7,7 +7,7 @@
         android:allowBackup="true"
         android:icon="@drawable/mmk"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/_SKDApp" >
         <activity
             android:name=".MyActivity"
             android:label="@string/app_name" >
@@ -25,9 +25,14 @@
             android:name=".ScanActivity"
             android:label="@string/ScanTxt" >
         </activity>
-
+        <activity
+            android:name=".activity_scan_off"
+            android:label="Сканирование офлайн" >
+        </activity>
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
 </manifest>

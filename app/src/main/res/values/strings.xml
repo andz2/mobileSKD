@@ -11,6 +11,8 @@
     <string name="CancBtnText">Отмена</string>
     <string name="SaveBtnText">Сохранить</string>
     <string name="ScanTxt">Сканировать</string>
-
+    <string name="syncT">Синхронизация</string>
+    <string name="offlineTx">Оффлайн считыватель</string>
+    <string name="title_activity_activity_scan_off">activity_scan_off</string>
 
 </resources>
