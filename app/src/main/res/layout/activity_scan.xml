@@ -9,7 +9,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="xxmmk.mobileskd.LoginActivity"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:baselineAligned="false">
+
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
@@ -36,50 +38,12 @@
     tools:context="xxmmk.mobileskd.ScanActivity"
     android:id="@+id/ScanText3"
     android:background="@android:color/white">
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Информация"
-        android:id="@+id/ScanText1"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
-    <TextView
+        <WebView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="№ карты"
-        android:id="@+id/ScanText3"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/ScanText1" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@drawable/nfc_scan"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignBottom="@+id/ScanText4" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/ScanText4"
-        android:layout_below="@+id/ScanText3"
-        android:layout_alignParentLeft="true" />
-
-    <WebView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:id="@+id/webView1"
-        android:layout_alignRight="@+id/ScanText4"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentLeft="true" />
 
         </RelativeLayout>
     </ScrollView>

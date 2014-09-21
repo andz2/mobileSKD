@@ -31,6 +31,7 @@ import android.net.Uri;
 import android.webkit.DownloadListener;
 
 
+
 /**
  * Created by User on 07.07.2014.
  */
@@ -68,37 +69,19 @@ public class ScanActivity extends Activity {
 
         mMobileSKDApp = ((MobileSKDApp) this.getApplication());
         setContentView(R.layout.activity_scan);
-        ActionBar bar = getActionBar();
-        bar.setDisplayHomeAsUpEnabled(true);
+
+        ActionBar myAB = getActionBar();
+        myAB.setTitle(mMobileSKDApp.SKDOperator);
+        myAB.setSubtitle(mMobileSKDApp.SKDKPP);
+        myAB.setDisplayShowHomeEnabled(false);
+        myAB.setDisplayHomeAsUpEnabled(true);
+
       //  bar.setHomeButtonEnabled(true);
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        ShowCardData(mMobileSKDApp.SKDRfIdCard);
 
-
-        ScanText4 = (TextView) this.findViewById(R.id.ScanText4);
-       // ScanText2 = (TextView) this.findViewById(R.id.ScanText2);
 /*
-        Bundle b = this.getIntent().getExtras();
-
-        mDescription=b.getString("DESCRIPTION");
-        mCode=b.getString("CODE");
-        mObjectId=b.getString("OBJECT_ID");
-*/
-
-      /*  btnSave = (Button) this.findViewById(R.id.Scanbutton1);
-        btnSave.setEnabled(false);
-        btnCancel = (Button) this.findViewById(R.id.Scanbutton2);
-        btnSave.setEnabled(true);*/
-
-/*        if (mDescription == null) {
-            finish();
-            return;
-        }*/
-
-        //ScanText2.setText(mDescription);
-        ScanText4.setText(mCode);
-       // Log.d(mCode, "1mCode=");
-
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
@@ -107,7 +90,6 @@ public class ScanActivity extends Activity {
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
             finish();
             return;
-
         }
 
         if (!nfcAdapter.isEnabled()) {
@@ -118,26 +100,8 @@ public class ScanActivity extends Activity {
 
         // initialize NFC
 
-        nfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+        nfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);*/
 
-    /*    btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Log.v(mMobileTOiRApp.getLOG_TAG(), "btnSave= ");
-                mMobileSKDApp.getmDbHelper().setNewCode(mObjectId,mCode);
-                finish();
-                return;
-            }
-        });
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Log.v(mMobileTOiRApp.getLOG_TAG(), "btnCancel ");
-                finish();
-                return;
-            }
-        });*/
     }
 
     public void enableForegroundMode() {
@@ -161,8 +125,9 @@ public class ScanActivity extends Activity {
         //Log.d(TAG, "onResume");
 
         super.onResume();
-
-        enableForegroundMode();
+        ShowCardData(mMobileSKDApp.SKDRfIdCard);
+        //
+        // enableForegroundMode();
     }
 
     @Override
@@ -170,8 +135,8 @@ public class ScanActivity extends Activity {
         //Log.d(TAG, "onPause");
 
         super.onPause();
-
-        disableForegroundMode();
+        ShowCardData(mMobileSKDApp.SKDRfIdCard);
+        //disableForegroundMode();
     }
 
     private void vibrate() {
@@ -219,17 +184,21 @@ public class ScanActivity extends Activity {
             mWebView.getSettings().setJavaScriptEnabled(true);
             mWebView.setWebViewClient(new WebViewClient() {
                 public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                    mWebView.loadUrl("file:///android_asset/loaderror.html");
+                    finish();
+                    Intent intent = new Intent();
+                    intent.setClass(ScanActivity.this, ErrorScan.class);
+                    startActivity(intent);
+                  //  mWebView.loadUrl("file:///android_asset/loaderror.html");
 
                 }
             });
 
-            showProgress(true);
+         //   showProgress(true);
             mWebView.loadUrl("http://neptun.eco.mmk.chel.su:7777/pls/apex/XXOTA_APEX.MOBILE_SKD_VIEW?p_card_id="+mCode);
             mWebView.setWebViewClient(new WebViewClient() {
 
                 public void onPageFinished(WebView view, String url) {
-                    showProgress(false);
+         //           showProgress(false);
                 }
             });
 
@@ -276,21 +245,56 @@ public class ScanActivity extends Activity {
         }
     }
 
+    public void ShowCardData (String CardId)
+    {
+        mWebView = (WebView) findViewById(R.id.webView1);
+        mWebView.setVerticalScrollBarEnabled(false);
+        mWebView.setHorizontalScrollBarEnabled(false);
+        mWebView.setWebViewClient(new MyWebClient());
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.setWebViewClient(new WebViewClient() {
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                finish();
+                Intent intent = new Intent();
+                intent.setClass(ScanActivity.this, ErrorScan.class);
+                startActivity(intent);
+
+                //mWebView.loadUrl("file:///android_asset/loaderror.html");
+
+            }
+        });
+
+        //showProgress(true);
+        mWebView.loadUrl("http://neptun.eco.mmk.chel.su:7777/pls/apex/XXOTA_APEX.MOBILE_SKD_VIEW?p_card_id="+CardId);
+   /*     mWebView.setWebViewClient(new WebViewClient() {
+
+            public void onPageFinished(WebView view, String url) {
+                showProgress(false);
+            }
+        }
+        );*/
+    }
+
     final protected static char[] hexArray = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
     public static String bytesToHex(byte[] bytes) {
         byte[] nb ={45,-93, 102, -3};
-       // char[] hexChars = new char[bytes.length * 2];
-        char[] hexChars = new char[nb.length * 2];
+        char[] hexChars = new char[bytes.length * 2];
+       // char[] hexChars = new char[nb.length * 2];
         int v;
        /* for ( int j = 0; j < bytes.length; j++ ) {
             v = bytes[j] & 0xFF;
             hexChars[j * 2] = hexArray[v >>> 4];
             hexChars[j * 2 + 1] = hexArray[v & 0x0F];
         }*/
-        for ( int j = nb.length-1; j >=0; j-- ) {
+      /*  for ( int j = nb.length-1; j >=0; j-- ) {
             v = nb[j] & 0xFF;
             hexChars[(nb.length-1-j) * 2] = hexArray[v >>> 4];
             hexChars[(nb.length-1-j) * 2 + 1] = hexArray[v & 0x0F];
+        }*/
+        for ( int j = bytes.length-1; j >=0; j-- ) {
+            v = bytes[j] & 0xFF;
+            hexChars[(bytes.length-1-j) * 2] = hexArray[v >>> 4];
+            hexChars[(bytes.length-1-j) * 2 + 1] = hexArray[v & 0x0F];
         }
         return new String(hexChars);
     }

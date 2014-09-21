@@ -60,7 +60,13 @@ public class MobileSKDApp extends Application {
 
     private MobileSKDDB mDbHelper;
     private String mDataBasicURL = "https://navigator.mmk.ru/getdata.aspx";
-    private String mLoginURL = "https://navigator.mmk.ru/login_kis.aspx";
+    private String mLoginURL = "http://neptun.eco.mmk.chel.su:7777/pls/apex/XXOTA_APEX.XXHR_SKD_MOBILE.login";//"https://navigator.mmk.ru/login_kis.aspx";
+    public String SKDOperator="Кто ВЫ?";
+    public String SKDKPP="Укажите КПП";
+    public String SKDRfId;
+    public String SKDRfIdCard;
+    public String    SKDStep;
+
 
     public String getDataURL(String mCode) {
         return this.mDataBasicURL+"?s="+mCode+"&token="+this.getmHASH();
@@ -81,8 +87,8 @@ public class MobileSKDApp extends Application {
         Log.d(this.mDataBasicURL+"?s="+mCode+"&token="+this.getmHASH(),"URL");
         return this.mDataBasicURL+"?s="+mCode+"&token="+this.getmHASH();
     }
-    public String getLoginDataURL(String login, String password) {
-        return this.mLoginURL+"?user="+login+"&password="+password;
+    public String getLoginDataURL(String rfId) {
+        return this.mLoginURL+"?rfid="+rfId;
     }
 
     public String getmHASH() {

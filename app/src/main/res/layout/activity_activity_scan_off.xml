@@ -32,42 +32,19 @@
             tools:context="xxmmk.mobileskd.ScanActivity"
             android:id="@+id/ScanText3"
             android:background="@android:color/white">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Информация"
-                android:id="@+id/ScanText1"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="№ карты"
-                android:id="@+id/ScanText3"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/ScanText1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView"
-                android:src="@drawable/nfc_scan"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignBottom="@+id/ScanText4" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/ScanText4"
-                android:layout_below="@+id/ScanText3"
-                android:layout_alignParentLeft="true" />
-
-        </RelativeLayout>
+             <TextView
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:text="Сканирование оффлайн"
+                 android:id="@+id/textView"
+                 android:textStyle="bold"
+                 android:layout_gravity="center_horizontal"
+                 android:textSize="40dp"
+                 android:gravity="center_horizontal|fill_vertical|top"
+                 android:layout_alignParentTop="true"
+                 android:layout_alignParentLeft="true" />
+         </RelativeLayout>
 
 
 

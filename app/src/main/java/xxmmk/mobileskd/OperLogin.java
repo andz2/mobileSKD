@@ -1,75 +1,75 @@
 package xxmmk.mobileskd;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.app.PendingIntent;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.CursorLoader;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.Loader;
-import android.content.pm.ActivityInfo;
-import android.database.Cursor;
-import android.net.Uri;
-import android.nfc.NfcAdapter;
-import android.os.AsyncTask;
+        import android.animation.Animator;
+        import android.animation.AnimatorListenerAdapter;
+        import android.annotation.TargetApi;
+        import android.app.ActionBar;
+        import android.app.Activity;
+        import android.app.LoaderManager.LoaderCallbacks;
+        import android.app.PendingIntent;
+        import android.content.ContentResolver;
+        import android.content.Context;
+        import android.content.CursorLoader;
+        import android.content.Intent;
+        import android.content.IntentFilter;
+        import android.content.Loader;
+        import android.content.pm.ActivityInfo;
+        import android.database.Cursor;
+        import android.net.Uri;
+        import android.nfc.NfcAdapter;
+        import android.os.AsyncTask;
 
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Vibrator;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+        import android.os.Build;
+        import android.os.Bundle;
+        import android.os.Vibrator;
+        import android.provider.ContactsContract;
+        import android.text.TextUtils;
+        import android.util.Log;
+        import android.view.KeyEvent;
+        import android.view.View;
+        import android.view.View.OnClickListener;
+        import android.view.inputmethod.EditorInfo;
+        import android.widget.ArrayAdapter;
+        import android.widget.AutoCompleteTextView;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.TextView;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpVersion;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.conn.scheme.PlainSocketFactory;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.params.HttpProtocolParams;
-import org.apache.http.protocol.HTTP;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+        import org.apache.http.HttpEntity;
+        import org.apache.http.HttpResponse;
+        import org.apache.http.HttpVersion;
+        import org.apache.http.StatusLine;
+        import org.apache.http.client.ClientProtocolException;
+        import org.apache.http.client.HttpClient;
+        import org.apache.http.client.methods.HttpGet;
+        import org.apache.http.conn.ClientConnectionManager;
+        import org.apache.http.conn.scheme.PlainSocketFactory;
+        import org.apache.http.conn.scheme.Scheme;
+        import org.apache.http.conn.scheme.SchemeRegistry;
+        import org.apache.http.conn.ssl.SSLSocketFactory;
+        import org.apache.http.impl.client.DefaultHttpClient;
+        import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
+        import org.apache.http.params.BasicHttpParams;
+        import org.apache.http.params.HttpParams;
+        import org.apache.http.params.HttpProtocolParams;
+        import org.apache.http.protocol.HTTP;
+        import org.json.JSONArray;
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import xxmmk.mobileskd.R;
-import android.nfc.Tag;
+        import java.io.BufferedReader;
+        import java.io.IOException;
+        import java.io.InputStream;
+        import java.io.InputStreamReader;
+        import java.util.ArrayList;
+        import java.util.List;
+        import xxmmk.mobileskd.R;
+        import android.nfc.Tag;
 
 /**
  * A login screen that offers login via email/password.
 
  */
-public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>*/{
+public class OperLogin extends Activity /*implements LoaderCallbacks<Cursor>*/{
 
 
 
@@ -90,14 +90,22 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
     private String mCode;
     private TextView ScanText4;
 
-    private static final String TAG = LoginActivity.class.getName();
+    private static final String TAG = OperLogin.class.getName();
 
 
     @Override
     protected void onStart(){
         super.onStart();
-        mEmailView.setText(mMobileSKDApp.getmDbHelper().getSettingValue("username"));
-        mPasswordView.setText(mMobileSKDApp.getmDbHelper().getSettingValue("password"));
+        Button CnButton = (Button) findViewById(R.id.CancBn);
+        CnButton.setOnClickListener(new View.OnClickListener() {
+                                           @Override
+                                           public void onClick(View view) {
+                                               finish();
+                                           }
+                                       }
+        );
+//        mEmailView.setText(mMobileSKDApp.getmDbHelper().getSettingValue("username"));
+//        mPasswordView.setText(mMobileSKDApp.getmDbHelper().getSettingValue("password"));
     }
 
     @Override
@@ -105,49 +113,12 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mMobileSKDApp = (MobileSKDApp) this.getApplication();
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.operlogin);
         ActionBar myAB = getActionBar();
         //myAB.setTitle("Иванов И.И.");
         //myAB.setSubtitle("Проходная 7");
-//        myAB.setDisplayShowHomeEnabled(false); --если стиль прозрачный то падает
-
-        //ScanText4 = (TextView) this.findViewById(R.id.ScanText4);
-
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         nfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
-
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.login);
-
-        //populateAutoComplete();
-
-        mPasswordView = (EditText) findViewById(R.id.password);
-
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        Button mEmailSignInButton = (Button) findViewById(R.id.LoginBtn);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
-
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
-    }
-
-    private void populateAutoComplete() {
-        //getLoaderManager().initLoader(0, null, this);
     }
 
 
@@ -161,45 +132,14 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
             return;
         }
 
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
         boolean cancel = false;
         View focusView = null;
 
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+//            showProgress(true); *************************************************************************подменить на показ окна
+            mAuthTask = new UserLoginTask(mMobileSKDApp.SKDRfId);
             mAuthTask.execute((Void) null);
         }
     }
@@ -219,6 +159,7 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
@@ -253,14 +194,11 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
-        private final String mPassword;
+
         private String mToken = "null";
 
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
+        UserLoginTask(String rfId) {
+                    }
 
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -268,11 +206,9 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
             try {
                 StringBuilder builder = new StringBuilder();
                 HttpClient client =mMobileSKDApp.getNewHttpClient(); //new DefaultHttpClient();
-         //новое исправление
-         //       HttpGet httpGet = new HttpGet(mMobileSKDApp.getLoginDataURL(mEmail,mPassword));
-                HttpGet httpGet = new HttpGet(mMobileSKDApp.getLoginDataURL(""));
+                HttpGet httpGet = new HttpGet(mMobileSKDApp.getLoginDataURL(mMobileSKDApp.SKDRfId));
 
-       //         Log.d(mMobileSKDApp.getLOG_TAG(), "LoginActivity.UserLoginTask " + mMobileSKDApp.getLoginDataURL(mEmail,mPassword));
+                Log.d(mMobileSKDApp.getLOG_TAG(), "OperLogin.UserLoginTask " +mMobileSKDApp.getLoginDataURL(mMobileSKDApp.SKDRfId));
 
                 try {
                     HttpResponse response = client.execute(httpGet);
@@ -294,7 +230,9 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                                 mToken = jsonObject.getString("token");
+                                mMobileSKDApp.SKDOperator = jsonObject.getString("oper");
                                 vStatus = true;
+                             //   Log.d(jsonObject.getString("oper"),"Tst");
 
                             }
                             //Toast.makeText(this.getBaseContext(),clientID, Toast.LENGTH_LONG).show();
@@ -318,13 +256,11 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
                 Thread.sleep(10);
                 vStatus = vStatus && !mToken.equals("null");
                 if (vStatus) {
-                    //Log.d(mMobileSKDApp.getLOG_TAG(), "LoginActivity.Login OK ");
-                    mMobileSKDApp.saveUsername(mEmail);
-                    mMobileSKDApp.setmHASH(mToken);
-                  //  mMobileSKDApp.getmDbHelper().refreshOrgs(builder.toString());
+
+                       mMobileSKDApp.setmHASH(mToken);
+                    //  mMobileSKDApp.getmDbHelper().refreshOrgs(builder.toString());
                     return true;
                 } else {
-                    //Log.d(mMobileSKDApp.getLOG_TAG(), "LoginActivity.Login ERROR ");
                     return false;
                 }
 
@@ -336,20 +272,27 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            showProgress(false);
+           // showProgress(false); ******************************************************заменим потом
 
             if (success) {
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+             //   super.onCreate(savedInstanceState);
+                Log.d("go error page","way");
+                Intent intent = new Intent();
+                intent.setClass(OperLogin.this, ErrorLogin.class);
+
+                startActivity(intent);
+                finish();
+              //  setContentView(R.layout.error_l);
+
             }
         }
 
         @Override
         protected void onCancelled() {
             mAuthTask = null;
-            showProgress(false);
+         //   showProgress(false);****************************************************тоже
         }
 
 
@@ -375,8 +318,8 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
 
     @Override
     protected void onPause() {
-      super.onPause();
-      disableForegroundMode();
+        super.onPause();
+        disableForegroundMode();
     }
 
     private void vibrate() {
@@ -390,9 +333,21 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
 
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
             Tag myTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-            mMobileSKDApp.SKDRfId=bytesToHex(myTag.getId());
-            Log.d( mMobileSKDApp.SKDRfId, "=mCode");
+            //mMobileSKDApp.SKDRfId=bytesToHex(myTag.getId());
+            mMobileSKDApp.SKDRfIdCard=bytesToHex(myTag.getId());
+            Log.d( mMobileSKDApp.SKDRfIdCard, "=mCode");
+            //attemptLogin();
+
+        //    Log.d(mMobileSKDApp.SKDOperator,"operator !!!!!!");
             vibrate();
+            Log.d("Поехали","action !!!!!!");
+        //    Intent intentSt = new Intent(this, MyActivity.class);
+        //    startActivityForResult(intentSt, 1);
+
+            intent.setClass(OperLogin.this, ScanActivity.class);
+//            intent.setClass(OperLogin.this, ErrorScan.class);
+            startActivity(intent);
+
         }
     }
 

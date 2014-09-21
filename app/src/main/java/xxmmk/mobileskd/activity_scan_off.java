@@ -49,7 +49,7 @@ public class activity_scan_off extends Activity {
         bar.setDisplayHomeAsUpEnabled(true);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        ScanText4 = (TextView) this.findViewById(R.id.ScanText4);
+        //ScanText4 = (TextView) this.findViewById(R.id.ScanText4);
         FIO = (TextView) this.findViewById(R.id.TextFio);
         Doljn = (TextView) this.findViewById(R.id.TextDoljn);
         Orgj = (TextView) this.findViewById(R.id.TextOrg);
